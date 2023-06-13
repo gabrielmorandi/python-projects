@@ -1,5 +1,5 @@
 from socket import *
-from threading import Thread, Lock, Condition
+from threading import Thread, Lock
 
 serverPort = 12000
 serverSocket = socket(AF_INET, SOCK_STREAM)
@@ -12,7 +12,6 @@ total_questions = len(answer_key)
 
 statistics = {}
 lock = Lock()
-condition = Condition(lock)
 counter = 0
 
 def print_statistics():
