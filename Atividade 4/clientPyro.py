@@ -11,6 +11,7 @@ def start_client():
     file_data_base64 = base64.b64encode(file_data).decode('utf-8')
     file_name = os.path.basename(file_path)
     file_server.upload_file(file_name, file_data_base64)
+    print(f'"{file_name}" uploaded successfully')
 
   upload_file_to_server("./teste.txt")
   upload_file_to_server("./exemplo.txt")
