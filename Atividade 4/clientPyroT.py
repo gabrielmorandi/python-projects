@@ -36,9 +36,9 @@ def start_client():
     file_server.upload_file(file_name, file_data_base64)
     print(f'"{file_name}" uploaded successfully')
 
-  # upload_file_to_server("./interesse.txt")
-  upload_file_to_server("./teste.txt")
-  upload_file_to_server("./exemplo.txt")
+  upload_file_to_server("./interesse.txt")
+  # upload_file_to_server("./teste.txt")
+  # upload_file_to_server("./exemplo.txt")
   
   def get_file_info_from_server():
     files_info = file_server.get_file_info()
@@ -62,7 +62,7 @@ def start_client():
   def download_file_from_server(file_name):
     client.download_file(file_name, file_server)
 
-    # download_file_from_server('interesse.txt')
+  download_file_from_server('teste.txt')
   
   daemon.requestLoop()
 
