@@ -25,7 +25,7 @@ def start_client():
   client = Client()
   client.uri = daemon.register(client)
   
-  file_server = pyro.Proxy("PYRO:obj_c3f6f57476214be7acda56752e4bb38a@localhost:62065")
+  file_server = pyro.Proxy("PYRO:obj_cd1aee92095d4a2daffb5bb36cd47373@localhost:52865")
   file_server.register_client(client.uri)
   
   def upload_file_to_server(file_path):

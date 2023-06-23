@@ -48,6 +48,7 @@ class FileServer(object):
     print("No interest found for this client and file.")
     
   def download_file(self, file_name):
+    print('Download file   requested')
     for file_obj in all_files:
       if file_obj["name"] == file_name:
         return base64.b64encode(file_obj["data"]).decode('utf-8')
