@@ -28,10 +28,13 @@ class FileServer(object):
     if file_name in all_interests:
       for interest in all_interests[file_name][:]:
         if time.time() <= interest["valid_until"]:
-          client = pyro.Proxy(interest["client_uri"])
-          client.notify(f"File '{file_name}' has been uploaded")
-          print(f'Notification send to: {client}')
-          all_interests[file_name].remove(interest)
+          try:
+            with pyro.Proxy(interest["client_uri"]) as client:
+              client.notify(f"File '{file_name}' has been uploaded")
+              print(f'Notification sent to: {client}')
+              all_interests[file_name].remove(interest)
+          except Exception as e:
+            print(f"Error notifying client: {e}")
 
   def get_file_info(self):
     print('File info requested')
@@ -48,7 +51,7 @@ class FileServer(object):
     print("No interest found for this client and file.")
     
   def download_file(self, file_name):
-    print('Download file   requested')
+    print('Download file requested')
     for file_obj in all_files:
       if file_obj["name"] == file_name:
         return base64.b64encode(file_obj["data"]).decode('utf-8')
